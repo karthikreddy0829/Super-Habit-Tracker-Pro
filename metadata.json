@@ -1,0 +1,7 @@
+{
+  "name": "Super Habit Tracker Pro",
+  "description": "Minimalist pro-aesthetic habit tracker with Gemini AI coaching, streak tracking, and emergency SOS features.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
