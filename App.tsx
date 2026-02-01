@@ -19,6 +19,7 @@ import Onboarding from './components/Onboarding.tsx';
 import CycleTracker from './components/CycleTracker.tsx';
 import Emergency from './components/Emergency.tsx';
 import Logo from './components/Logo.tsx';
+import InstallButton from './components/InstallButton.tsx';
 
 const ALL_DATA_KEY = 'super_tracker_v10_all_data';
 const PROFILES_KEY = 'super_tracker_v10_profiles';
@@ -192,10 +193,18 @@ const App: React.FC = () => {
               <div className="text-[10px] text-slate-400 font-bold uppercase mt-1">{activeProfile.name}</div>
             </div>
           </div>
-          <button onClick={() => setActiveTab('settings')} className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm" style={{ backgroundColor: themeColor + '15', color: themeColor }}>
-            <User size={20} />
-          </button>
-        </div>
+         <div className="flex items-center gap-2">
+  <InstallButton />
+
+  <button
+    onClick={() => setActiveTab('settings')}
+    className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm"
+    style={{ backgroundColor: themeColor + '15', color: themeColor }}
+  >
+    <User size={20} />
+  </button>
+</div>
+
         
         {(activeTab === 'track' || activeTab === 'stats' || activeTab === 'calendar' || activeTab === 'cycle') && (
           <div className="flex items-center justify-between mt-4 bg-slate-50 p-1.5 rounded-2xl">
