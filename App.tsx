@@ -182,42 +182,63 @@ const App: React.FC = () => {
         </div>
       </aside>
 
-      <header className="p-6 bg-white border-b border-slate-100 flex-shrink-0 z-10">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-4">
-            <button onClick={() => setIsMenuOpen(true)} className="p-2 -ml-2 text-slate-400"><Menu size={24} /></button>
-            <div>
-              <h1 className="text-xl font-black text-slate-900 tracking-tight leading-none uppercase">
-                {activeTab}
-              </h1>
-              <div className="text-[10px] text-slate-400 font-bold uppercase mt-1">{activeProfile.name}</div>
-            </div>
-          </div>
-         <div className="flex items-center gap-2">
-  <InstallButton />
+     <header className="p-6 bg-white border-b border-slate-100 flex-shrink-0 z-10">
+  <div className="flex items-center justify-between mb-2">
+    <div className="flex items-center gap-4">
+      <button
+        onClick={() => setIsMenuOpen(true)}
+        className="p-2 -ml-2 text-slate-400"
+      >
+        <Menu size={24} />
+      </button>
 
-  <button
-    onClick={() => setActiveTab('settings')}
-    className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm"
-    style={{ backgroundColor: themeColor + '15', color: themeColor }}
-  >
-    <User size={20} />
-  </button>
-</div>
+      <div>
+        <h1 className="text-xl font-black text-slate-900 tracking-tight leading-none uppercase">
+          {activeTab}
+        </h1>
+        <div className="text-[10px] text-slate-400 font-bold uppercase mt-1">
+          {activeProfile.name}
+        </div>
+      </div>
+    </div>
 
-        
-        {(activeTab === 'track' || activeTab === 'stats' || activeTab === 'calendar' || activeTab === 'cycle') && (
-          <div className="flex items-center justify-between mt-4 bg-slate-50 p-1.5 rounded-2xl">
-            <button onClick={() => changeMonth(-1)} className="p-2 text-slate-400"><ChevronLeft size={18} /></button>
-            <div className="text-center">
-              <div className="text-[9px] font-black uppercase opacity-40">{viewDate.getFullYear()}</div>
-              <div className="text-xs font-black text-slate-800 uppercase">{currentMonthName}</div>
-            </div>
-            <button onClick={() => changeMonth(1)} className="p-2 text-slate-400"><ChevronRight size={18} /></button>
-          </div>
-        )}
-      </header>
+    <div className="flex items-center gap-2">
+      <InstallButton />
+      <button
+        onClick={() => setActiveTab("settings")}
+        className="w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm"
+        style={{ backgroundColor: themeColor + "15", color: themeColor }}
+      >
+        <User size={20} />
+      </button>
+    </div>
+  </div>
 
+  {(activeTab === "track" ||
+    activeTab === "stats" ||
+    activeTab === "calendar" ||
+    activeTab === "cycle") && (
+    <div className="flex items-center justify-between mt-4 bg-slate-50 p-1.5 rounded-2xl">
+      <button onClick={() => changeMonth(-1)} className="p-2 text-slate-400">
+        <ChevronLeft size={18} />
+      </button>
+
+      <div className="text-center">
+        <div className="text-[9px] font-black uppercase opacity-40">
+          {viewDate.getFullYear()}
+        </div>
+        <div className="text-xs font-black text-slate-800 uppercase">
+          {currentMonthName}
+        </div>
+      </div>
+
+      <button onClick={() => changeMonth(1)} className="p-2 text-slate-400">
+        <ChevronRight size={18} />
+      </button>
+    </div>
+  )}
+</header>
+      
       <main className="flex-1 overflow-y-auto no-scrollbar scroll-container bg-slate-50 pb-6">
         {activeTab === 'track' && <HabitList habits={habits} monthYearKey={monthYearKey} year={viewDate.getFullYear()} month={viewDate.getMonth()} onToggleDay={toggleDay} onUpdate={(id, u) => setHabits(prev => prev.map(h => h.id === id ? {...h, ...u} : h))} onAdd={(n) => setHabits(prev => [...prev, { id: Date.now().toString(), name: n, completions: {}, color: themeColor, weekendsOff: false }])} onDelete={(id) => setHabits(prev => prev.filter(h => h.id !== id))} themeColor={themeColor} />}
         {activeTab === 'calendar' && <CalendarView calendarData={calendarData} setCalendarData={setCalendarData} viewDate={viewDate} themeColor={themeColor} />}
